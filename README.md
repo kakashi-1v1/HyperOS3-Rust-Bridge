@@ -39,6 +39,12 @@ How each piece works, with addresses, is in [docs/how-it-works.md](docs/how-it-w
 The module refuses to install on HyperOS 4 (not needed there) and removes the older
 `hyperos_rustruntime_v4_minimal` module, which it replaces.
 
+**KernelSU with a mount metamodule** (Hybrid Mount and similar): some metamodules put module mount points on
+KernelSU's umount list, which hides them from every app without root. The launcher then can't load this runtime at boot
+(`dlopen failed: library "libmisqlite3.so" not found`); HyperOS may even switch to three-button navigation because
+the home app keeps failing. Since v1.2 the module takes its own mount points off that list at boot, so this is
+handled automatically (switch back to gestures once if it already happened).
+
 To remove: remove the module (and any HyperOS 4 app that depends on it) and reboot.
 
 ## Build it yourself
