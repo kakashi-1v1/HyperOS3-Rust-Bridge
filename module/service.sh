@@ -1,6 +1,8 @@
 #!/system/bin/sh
 
 MODDIR=${0%/*}
+# Mods Center: warn in the root manager if module files are not mounted
+[ -f "$MODDIR/kashi_mount_check.sh" ] && ( . "$MODDIR/kashi_mount_check.sh"; kashi_boot_check ) &
 
 chcon u:object_r:zygote_exec:s0 "$MODDIR/system/system_ext/bin/hyos_spawner" 2>/dev/null
 chcon u:object_r:system_lib_file:s0 "$MODDIR"/system/system_ext/lib64/*.so 2>/dev/null

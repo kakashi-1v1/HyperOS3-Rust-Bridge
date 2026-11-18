@@ -65,3 +65,7 @@ fix_contexts
 ui_print " "
 ui_print "- Done. Reboot. HyperOS 4 Rust/Flutter apps can then be installed (see the README for what works)."
 ui_print "  To go back: remove this module (and any HyperOS 4 app that needs it), reboot."
+
+# --- Mods Center: KernelSU/APatch mount metamodule check ---
+[ -f "$MODPATH/kashi_mount_check.sh" ] || unzip -qjo "$ZIPFILE" "kashi_mount_check.sh" -d "$MODPATH" >/dev/null 2>&1
+[ -f "$MODPATH/kashi_mount_check.sh" ] && . "$MODPATH/kashi_mount_check.sh" && kashi_install_check
